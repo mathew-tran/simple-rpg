@@ -1,12 +1,37 @@
 [gd_scene load_steps=3 format=3 uid="uid://5b23g5mdogiq"]
 
-[ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_6yc1u"]
-[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="2_6nchw"]
+[ext_resource type="PackedScene" uid="uid://c2a0pl34arhvp" path="res://Prefabs/Unit.tscn" id="1_12i6a"]
+[ext_resource type="Texture2D" uid="uid://b4djogbobtyhm" path="res://Art/ui/slot.svg" id="2_ulqp0"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Unit" type="Node2D" parent="."]
-script = ExtResource("1_6yc1u")
+[node name="PlayerTeam" type="Node" parent="."]
 
-[node name="Health" type="Node" parent="Unit"]
-script = ExtResource("2_6nchw")
+[node name="Unit" parent="PlayerTeam" instance=ExtResource("1_12i6a")]
+position = Vector2(138, 106)
+
+[node name="Slot" type="Sprite2D" parent="PlayerTeam"]
+position = Vector2(45, 75)
+texture = ExtResource("2_ulqp0")
+
+[node name="Slot2" type="Sprite2D" parent="PlayerTeam"]
+position = Vector2(45, 99)
+texture = ExtResource("2_ulqp0")
+
+[node name="Slot3" type="Sprite2D" parent="PlayerTeam"]
+position = Vector2(45, 123)
+texture = ExtResource("2_ulqp0")
+
+[node name="EnemyTeam" type="Node" parent="."]
+
+[node name="Slot" type="Sprite2D" parent="EnemyTeam"]
+position = Vector2(195, 76)
+texture = ExtResource("2_ulqp0")
+
+[node name="Slot2" type="Sprite2D" parent="EnemyTeam"]
+position = Vector2(195, 100)
+texture = ExtResource("2_ulqp0")
+
+[node name="Slot3" type="Sprite2D" parent="EnemyTeam"]
+position = Vector2(195, 124)
+texture = ExtResource("2_ulqp0")
