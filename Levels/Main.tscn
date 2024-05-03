@@ -1,37 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://5b23g5mdogiq"]
+[gd_scene load_steps=5 format=3 uid="uid://5b23g5mdogiq"]
 
 [ext_resource type="PackedScene" uid="uid://c2a0pl34arhvp" path="res://Prefabs/Unit.tscn" id="1_12i6a"]
+[ext_resource type="Script" path="res://Scripts/CombatManager.gd" id="1_sjsiw"]
+[ext_resource type="Script" path="res://Scripts/Team.gd" id="2_adhku"]
 [ext_resource type="Texture2D" uid="uid://b4djogbobtyhm" path="res://Art/ui/slot.svg" id="2_ulqp0"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="PlayerTeam" type="Node" parent="."]
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource("1_sjsiw")
 
-[node name="Unit" parent="PlayerTeam" instance=ExtResource("1_12i6a")]
+[node name="PlayerTeam" type="Node" parent="CombatManager"]
+script = ExtResource("2_adhku")
+
+[node name="Units" type="Node" parent="CombatManager/PlayerTeam"]
+
+[node name="Unit" parent="CombatManager/PlayerTeam/Units" instance=ExtResource("1_12i6a")]
 position = Vector2(138, 106)
 
-[node name="Slot" type="Sprite2D" parent="PlayerTeam"]
+[node name="Slots" type="Node" parent="CombatManager/PlayerTeam"]
+
+[node name="Slot" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
 position = Vector2(45, 75)
 texture = ExtResource("2_ulqp0")
 
-[node name="Slot2" type="Sprite2D" parent="PlayerTeam"]
+[node name="Slot2" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
 position = Vector2(45, 99)
 texture = ExtResource("2_ulqp0")
 
-[node name="Slot3" type="Sprite2D" parent="PlayerTeam"]
+[node name="Slot3" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
 position = Vector2(45, 123)
 texture = ExtResource("2_ulqp0")
 
-[node name="EnemyTeam" type="Node" parent="."]
+[node name="EnemyTeam" type="Node" parent="CombatManager"]
+script = ExtResource("2_adhku")
 
-[node name="Slot" type="Sprite2D" parent="EnemyTeam"]
+[node name="Units" type="Node" parent="CombatManager/EnemyTeam"]
+
+[node name="Slots" type="Node" parent="CombatManager/EnemyTeam"]
+
+[node name="Slot" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
 position = Vector2(195, 76)
 texture = ExtResource("2_ulqp0")
 
-[node name="Slot2" type="Sprite2D" parent="EnemyTeam"]
+[node name="Slot2" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
 position = Vector2(195, 100)
 texture = ExtResource("2_ulqp0")
 
-[node name="Slot3" type="Sprite2D" parent="EnemyTeam"]
+[node name="Slot3" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
 position = Vector2(195, 124)
 texture = ExtResource("2_ulqp0")

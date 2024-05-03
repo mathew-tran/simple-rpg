@@ -1,0 +1,3 @@
+extends BaseAbility
+
+func DoAbility():

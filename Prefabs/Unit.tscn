@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2a0pl34arhvp"]
+[gd_scene load_steps=6 format=3 uid="uid://c2a0pl34arhvp"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_5xsb0"]
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="2_b3cma"]
 [ext_resource type="Texture2D" uid="uid://j44rbw61nmsj" path="res://Art/Classes/squire.svg" id="3_83xu8"]
+[ext_resource type="Script" path="res://Scripts/Components/StatComponent.gd" id="3_kiswt"]
+[ext_resource type="Script" path="res://Scripts/Abilities/BaseAbility.gd" id="5_ep5kl"]
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_5xsb0")
@@ -10,5 +12,13 @@ script = ExtResource("1_5xsb0")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_b3cma")
 
+[node name="Stat" type="Node" parent="."]
+script = ExtResource("3_kiswt")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_83xu8")
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Abil" type="Node" parent="Abilities"]
+script = ExtResource("5_ep5kl")
