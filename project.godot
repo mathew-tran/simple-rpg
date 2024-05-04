@@ -15,9 +15,12 @@ run/main_scene="res://Levels/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Definitions="*res://Scripts/AutoLoad/Definitions.gd"
+
 [display]
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/mode=2
 window/stretch/mode="canvas_items"

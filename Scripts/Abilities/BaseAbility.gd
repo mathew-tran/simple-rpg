@@ -25,5 +25,10 @@ var OwningUnit
 func _ready():
 	OwningUnit = get_parent().get_parent()
 
+func DetermineTarget():
+	if Target == TARGET.SELF:
+		TargetUnit = OwningUnit
+
 func DoAbility():
-	pass
+	DetermineTarget()
+	print("Do ability on " + TargetUnit.name + " with " + OwningUnit.name)

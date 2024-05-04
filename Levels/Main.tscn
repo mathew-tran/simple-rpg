@@ -18,6 +18,12 @@ script = ExtResource("2_adhku")
 [node name="Unit" parent="CombatManager/PlayerTeam/Units" instance=ExtResource("1_12i6a")]
 position = Vector2(138, 106)
 
+[node name="Unit2" parent="CombatManager/PlayerTeam/Units" instance=ExtResource("1_12i6a")]
+position = Vector2(138, 106)
+
+[node name="Unit3" parent="CombatManager/PlayerTeam/Units" instance=ExtResource("1_12i6a")]
+position = Vector2(138, 106)
+
 [node name="Slots" type="Node" parent="CombatManager/PlayerTeam"]
 
 [node name="Slot" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
@@ -25,28 +31,29 @@ position = Vector2(45, 75)
 texture = ExtResource("2_ulqp0")
 
 [node name="Slot2" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
-position = Vector2(45, 99)
+position = Vector2(45, 125)
 texture = ExtResource("2_ulqp0")
 
 [node name="Slot3" type="Sprite2D" parent="CombatManager/PlayerTeam/Slots"]
-position = Vector2(45, 123)
+position = Vector2(45, 175)
 texture = ExtResource("2_ulqp0")
 
 [node name="EnemyTeam" type="Node" parent="CombatManager"]
 script = ExtResource("2_adhku")
+TeamType = 1
 
 [node name="Units" type="Node" parent="CombatManager/EnemyTeam"]
 
 [node name="Slots" type="Node" parent="CombatManager/EnemyTeam"]
 
 [node name="Slot" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
-position = Vector2(195, 76)
+position = Vector2(200, 75)
 texture = ExtResource("2_ulqp0")
 
 [node name="Slot2" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
-position = Vector2(195, 100)
+position = Vector2(200, 125)
 texture = ExtResource("2_ulqp0")
 
 [node name="Slot3" type="Sprite2D" parent="CombatManager/EnemyTeam/Slots"]
-position = Vector2(195, 124)
+position = Vector2(200, 175)
 texture = ExtResource("2_ulqp0")

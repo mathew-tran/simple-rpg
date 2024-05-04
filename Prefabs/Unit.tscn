@@ -1,13 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2a0pl34arhvp"]
+[gd_scene load_steps=11 format=3 uid="uid://c2a0pl34arhvp"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_5xsb0"]
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="2_b3cma"]
 [ext_resource type="Texture2D" uid="uid://j44rbw61nmsj" path="res://Art/Classes/squire.svg" id="3_83xu8"]
 [ext_resource type="Script" path="res://Scripts/Components/StatComponent.gd" id="3_kiswt"]
 [ext_resource type="Script" path="res://Scripts/Abilities/BaseAbility.gd" id="5_ep5kl"]
+[ext_resource type="Script" path="res://Scripts/Components/AbilitiesComponent.gd" id="5_gld07"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1cwi"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q54f"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pndo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53rwh"]
+bg_color = Color(1, 0, 0, 1)
+corner_detail = 1
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_5xsb0")
+UnitName = "Warrior"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_b3cma")
@@ -19,6 +33,59 @@ script = ExtResource("3_kiswt")
 texture = ExtResource("3_83xu8")
 
 [node name="Abilities" type="Node" parent="."]
+script = ExtResource("5_gld07")
 
 [node name="Abil" type="Node" parent="Abilities"]
 script = ExtResource("5_ep5kl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -37.0
+offset_right = 20.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+theme_override_constants/separation = 0
+
+[node name="AbilBar" type="ProgressBar" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_o1cwi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1q54f")
+show_percentage = false
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="Control"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_pndo4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_53rwh")
+value = 20.01
+show_percentage = false
+
+[node name="PollTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="PollTimer" to="." method="_on_poll_timer_timeout"]
