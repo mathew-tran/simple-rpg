@@ -16,6 +16,9 @@ var AbilityTimer : Timer
 
 var TeamType : DEFS.TEAM_TYPE
 
+signal Death
+
+
 func _ready():
 	NameLabel.text = UnitName
 
@@ -39,6 +42,8 @@ func Setup(teamType):
 		add_to_group("enemy_team")
 	else:
 		add_to_group("player_team")
+	add_to_group("unit")
+
 	HealthBar.max_value = HealthComponent.GetMaxHealth()
 	HealthBar.value = HealthComponent.GetHealth()
 	HealthComponent.connect("DamageTaken", Callable(self, "OnDamageTaken"))
@@ -46,11 +51,15 @@ func Setup(teamType):
 
 func OnDeath():
 	HealthLabel.text = "DEAD"
+
 	HealthBar.value = 0
 	AbilityTimer.stop()
 	if TeamType == DEFS.TEAM_TYPE.ENEMY:
 		queue_free()
+	emit_signal("Death")
 
+func Pause():
+	AbilityTimer.stop()
 
 func OnDamageTaken():
 	HealthBar.value = HealthComponent.GetHealth()
