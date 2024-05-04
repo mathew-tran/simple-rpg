@@ -8,7 +8,11 @@ func GetRandomEnemy(team):
 	else:
 		units = get_tree().get_nodes_in_group("enemy_team")
 
-	if units:
-		return units.pick_random()
+	var aliveUnits = []
+	for unit in units:
+		if unit.IsAlive():
+			aliveUnits.append(unit)
+	if aliveUnits:
+		return aliveUnits.pick_random()
 	else:
 		return null

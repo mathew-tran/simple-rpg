@@ -9,6 +9,7 @@ class_name Unit
 @onready var NameLabel = $Control/VBoxContainer/Label
 @onready var AbilBar = $Control/VBoxContainer/AbilBar
 @onready var HealthBar = $Control/HealthBar
+@onready var HealthLabel = $Control/HealthBar/Label
 @export var UnitName = "test"
 
 var AbilityTimer : Timer
@@ -28,6 +29,9 @@ func _ready():
 func TakeDamage(amount):
 	HealthComponent.TakeDamage(amount)
 
+func IsAlive():
+	return HealthComponent.IsDead() == false
+
 func Setup(teamType):
 	TeamType = teamType
 	if TeamType == DEFS.TEAM_TYPE.ENEMY:
@@ -41,13 +45,16 @@ func Setup(teamType):
 	HealthComponent.connect("Death", Callable(self, "OnDeath"))
 
 func OnDeath():
+	HealthLabel.text = "DEAD"
+	HealthBar.value = 0
+	AbilityTimer.stop()
 	if TeamType == DEFS.TEAM_TYPE.ENEMY:
 		queue_free()
-	else:
-		AbilityTimer.stop()
+
 
 func OnDamageTaken():
 	HealthBar.value = HealthComponent.GetHealth()
+	HealthLabel.text = str(HealthComponent.GetHealth()) + "/" + str(HealthComponent.GetMaxHealth())
 
 func OnAbilityTimerTimeout():
 	Abilities.GetRandomAbility().DoAbility()
