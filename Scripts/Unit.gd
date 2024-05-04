@@ -8,6 +8,7 @@ class_name Unit
 
 @onready var NameLabel = $Control/VBoxContainer/Label
 @onready var AbilBar = $Control/VBoxContainer/AbilBar
+@onready var HealthBar = $Control/HealthBar
 @export var UnitName = "test"
 
 var AbilityTimer : Timer
@@ -23,6 +24,17 @@ func _ready():
 
 	AbilityTimer.connect("timeout", Callable(self, "OnAbilityTimerTimeout"))
 	add_child(AbilityTimer)
+
+func Setup(teamType):
+	TeamType = teamType
+	if TeamType == DEFS.TEAM_TYPE.ENEMY:
+		$Sprite2D.flip_h = true
+	HealthBar.max_value = HealthComponent.GetMaxHealth()
+	HealthBar.value = HealthComponent.GetHealth()
+	HealthBar.connect("DamageTaken", Callable(self, "OnDamageTaken"))
+
+func OnDamageTaken():
+	HealthBar.value = HealthComponent.GetHealth()
 
 func OnAbilityTimerTimeout():
 	Abilities.GetRandomAbility().DoAbility()

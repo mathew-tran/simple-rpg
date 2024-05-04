@@ -7,6 +7,6 @@ extends Node
 func Setup():
 	for x in range(0, Units.get_child_count()):
 		var unit = Units.get_child(x) as Unit
-		unit.TeamType = TeamType
+		unit.Setup(TeamType)
 		unit.global_position = Slots.get_child(x).global_position
 
