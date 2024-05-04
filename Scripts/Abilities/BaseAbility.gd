@@ -18,9 +18,9 @@ enum TARGET {
 @export var Type : TYPE
 @export var Target : TARGET
 @export var Description = "Describe ability"
-var TargetUnit
 
-var OwningUnit
+var TargetUnit : Unit
+var OwningUnit : Unit
 
 func _ready():
 	OwningUnit = get_parent().get_parent()
@@ -28,6 +28,8 @@ func _ready():
 func DetermineTarget():
 	if Target == TARGET.SELF:
 		TargetUnit = OwningUnit
+	if Target == TARGET.SINGLE_ENEMY:
+		TargetUnit = Helper.GetRandomEnemy(OwningUnit.TeamType)
 
 func DoAbility():
 	DetermineTarget()

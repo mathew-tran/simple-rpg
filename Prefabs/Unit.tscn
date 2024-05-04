@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="2_b3cma"]
 [ext_resource type="Texture2D" uid="uid://j44rbw61nmsj" path="res://Art/Classes/squire.svg" id="3_83xu8"]
 [ext_resource type="Script" path="res://Scripts/Components/StatComponent.gd" id="3_kiswt"]
-[ext_resource type="Script" path="res://Scripts/Abilities/BaseAbility.gd" id="5_ep5kl"]
 [ext_resource type="Script" path="res://Scripts/Components/AbilitiesComponent.gd" id="5_gld07"]
+[ext_resource type="PackedScene" uid="uid://bktt8x2s4k3bv" path="res://Prefabs/Skills/Slash.tscn" id="6_t8ye8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1cwi"]
 bg_color = Color(0, 0, 0, 1)
@@ -35,8 +35,7 @@ texture = ExtResource("3_83xu8")
 [node name="Abilities" type="Node" parent="."]
 script = ExtResource("5_gld07")
 
-[node name="Abil" type="Node" parent="Abilities"]
-script = ExtResource("5_ep5kl")
+[node name="Slash" parent="Abilities" instance=ExtResource("6_t8ye8")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

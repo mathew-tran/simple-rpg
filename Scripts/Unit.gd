@@ -25,13 +25,26 @@ func _ready():
 	AbilityTimer.connect("timeout", Callable(self, "OnAbilityTimerTimeout"))
 	add_child(AbilityTimer)
 
+func TakeDamage(amount):
+	HealthComponent.TakeDamage(amount)
+
 func Setup(teamType):
 	TeamType = teamType
 	if TeamType == DEFS.TEAM_TYPE.ENEMY:
 		$Sprite2D.flip_h = true
+		add_to_group("enemy_team")
+	else:
+		add_to_group("player_team")
 	HealthBar.max_value = HealthComponent.GetMaxHealth()
 	HealthBar.value = HealthComponent.GetHealth()
-	HealthBar.connect("DamageTaken", Callable(self, "OnDamageTaken"))
+	HealthComponent.connect("DamageTaken", Callable(self, "OnDamageTaken"))
+	HealthComponent.connect("Death", Callable(self, "OnDeath"))
+
+func OnDeath():
+	if TeamType == DEFS.TEAM_TYPE.ENEMY:
+		queue_free()
+	else:
+		AbilityTimer.stop()
 
 func OnDamageTaken():
 	HealthBar.value = HealthComponent.GetHealth()
