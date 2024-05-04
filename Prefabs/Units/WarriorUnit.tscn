@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b01u013e0q5qv"]
+
+[ext_resource type="PackedScene" uid="uid://c2a0pl34arhvp" path="res://Prefabs/Unit.tscn" id="1_s1jgh"]
+[ext_resource type="PackedScene" uid="uid://bktt8x2s4k3bv" path="res://Prefabs/Skills/Slash.tscn" id="2_i1a6y"]
+
+[node name="Unit" instance=ExtResource("1_s1jgh")]
+
+[node name="Slash" parent="Abilities" index="0" instance=ExtResource("2_i1a6y")]

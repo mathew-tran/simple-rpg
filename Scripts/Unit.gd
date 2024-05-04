@@ -25,7 +25,6 @@ func _ready():
 	AbilityTimer = Timer.new()
 	AbilityTimer.autostart = true
 	AbilityTimer.one_shot = false
-
 	AbilityTimer.connect("timeout", Callable(self, "OnAbilityTimerTimeout"))
 	add_child(AbilityTimer)
 
@@ -48,6 +47,7 @@ func Setup(teamType):
 	HealthBar.value = HealthComponent.GetHealth()
 	HealthComponent.connect("DamageTaken", Callable(self, "OnDamageTaken"))
 	HealthComponent.connect("Death", Callable(self, "OnDeath"))
+	OnDamageTaken()
 
 func OnDeath():
 	HealthLabel.text = "DEAD"
@@ -66,6 +66,8 @@ func OnDamageTaken():
 	HealthLabel.text = str(HealthComponent.GetHealth()) + "/" + str(HealthComponent.GetMaxHealth())
 
 func OnAbilityTimerTimeout():
+	if is_instance_valid(Abilities) == false:
+		return
 	Abilities.GetRandomAbility().DoAbility()
 
 

@@ -10,3 +10,7 @@ func Setup():
 		unit.Setup(TeamType)
 		unit.global_position = Slots.get_child(x).global_position
 
+func AddUnit(unit):
+	var newUnit = load(unit).instantiate()
+	Units.add_child(newUnit)
+	print("spawned: " + newUnit.name)

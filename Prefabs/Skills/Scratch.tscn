@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfjyd2oakrcky"]
+
+[ext_resource type="Script" path="res://Scripts/Abilities/AttackAbility.gd" id="1_qo00a"]
+
+[node name="Scratch" type="Node"]
+script = ExtResource("1_qo00a")
+BaseDamage = 5
+DamageRange = 4
+Target = 3
