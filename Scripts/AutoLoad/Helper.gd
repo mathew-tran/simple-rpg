@@ -1,5 +1,10 @@
 extends Node
 
+func GetBattlefield():
+	var result = get_tree().get_nodes_in_group("battlefield")
+	if result:
+		return result[0]
+	return null
 
 func GetRandomEnemy(team):
 	var units = []

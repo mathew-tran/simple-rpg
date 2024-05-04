@@ -16,6 +16,8 @@ var AbilityTimer : Timer
 
 var TeamType : DEFS.TEAM_TYPE
 
+var DamageTextClass = preload("res://Prefabs/UI/DamageText.tscn")
+
 signal Death
 
 
@@ -47,7 +49,7 @@ func Setup(teamType):
 	HealthBar.value = HealthComponent.GetHealth()
 	HealthComponent.connect("DamageTaken", Callable(self, "OnDamageTaken"))
 	HealthComponent.connect("Death", Callable(self, "OnDeath"))
-	OnDamageTaken()
+	OnDamageTaken(0)
 
 func OnDeath():
 	HealthLabel.text = "DEAD"
@@ -61,11 +63,19 @@ func OnDeath():
 func Pause():
 	AbilityTimer.stop()
 
-func OnDamageTaken():
+func OnDamageTaken(amount):
 	HealthBar.value = HealthComponent.GetHealth()
 	HealthLabel.text = str(HealthComponent.GetHealth()) + "/" + str(HealthComponent.GetMaxHealth())
 	$Sprite2D.visible = false
 	$HitTimer.start()
+	if amount != 0:
+
+		var dmgText = DamageTextClass.instantiate() as DamageText
+		dmgText.Amount = amount
+		Helper.GetBattlefield().add_child(dmgText)
+		dmgText.global_position = $Sprite2D.global_position - Vector2(0, 20)
+
+
 
 func OnAbilityTimerTimeout():
 	if is_instance_valid(Abilities) == false:

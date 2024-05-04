@@ -4,7 +4,7 @@ extends Node
 var MaxHealth = 100
 
 signal Death
-signal DamageTaken
+signal DamageTaken(amount)
 
 var bIsDead = false
 
@@ -17,7 +17,7 @@ func TakeDamage(amount):
 		bIsDead = true
 		emit_signal("Death")
 	else:
-		emit_signal("DamageTaken")
+		emit_signal("DamageTaken", amount)
 
 func IsDead():
 	return bIsDead

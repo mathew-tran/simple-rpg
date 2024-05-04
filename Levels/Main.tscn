@@ -9,7 +9,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CombatManager" type="Node" parent="."]
+[node name="CombatManager" type="Node" parent="." groups=["battlefield"]]
 script = ExtResource("1_sjsiw")
 
 [node name="PlayerTeam" type="Node" parent="CombatManager"]
