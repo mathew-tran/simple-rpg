@@ -64,6 +64,8 @@ func Pause():
 func OnDamageTaken():
 	HealthBar.value = HealthComponent.GetHealth()
 	HealthLabel.text = str(HealthComponent.GetHealth()) + "/" + str(HealthComponent.GetMaxHealth())
+	$Sprite2D.visible = false
+	$HitTimer.start()
 
 func OnAbilityTimerTimeout():
 	if is_instance_valid(Abilities) == false:
@@ -74,3 +76,7 @@ func OnAbilityTimerTimeout():
 func _on_poll_timer_timeout():
 	AbilBar.max_value = AbilityTimer.wait_time
 	AbilBar.value = AbilityTimer.wait_time - AbilityTimer.time_left
+
+
+func _on_hit_timer_timeout():
+	$Sprite2D.visible = true
